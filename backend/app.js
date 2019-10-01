@@ -26,30 +26,7 @@ app.use((req, res, next) => {
 
 app.use(bodyParser.json());
 
-/*
-app.use('/api/recipes',(req,res,next)=>{
 
-const recipe=[{
-_id:'gg',
-title: 'jj',
-ingredients: 'ingredients',
-    instructions: 'req.body.instructions',
-    time: 6,
-    difficulty: 2
-
-}];
-res.status(200).json(recipe);
-});
-
-*/
-/*
-app.post('/api/recipes',(req,res,next)=>{
-console.log(req.body);
-res.status(201).json({
-message:'recipe created'
-});
-});
-*/
 app.post('/api/recipes', (req,res,next)=>{ 
 console.log(req.params.id);
 console.log(req.body);
@@ -78,7 +55,7 @@ instructions: req.body.instructions,
 });
 
 
-app.get('/api/recipes/:id', (req, res, next) => {
+app.get('/recipes/:id', (req, res, next) => {
   Recipe.findOne({
     _id: req.params.id
   }).then(
@@ -97,10 +74,8 @@ app.get('/api/recipes/:id', (req, res, next) => {
 
 
 
-app.put('/api/recipes/id', (req, res, next) => {
-console.log(req.params.id);
+app.put('/api/recipes/:id', (req, res, next) => {
   const recipe = new Recipe({
-_id: req.params.id,
     title: req.body.title,
 instructions: req.body.instructions,
     ingredients: req.body.ingredients,
